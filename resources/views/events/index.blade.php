@@ -3,11 +3,17 @@
 @section('content')
     <div class="container mx-auto p-8">
         <div class="flex justify-end mb-4">
-            <a href="{{ route('events.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Event</a>
+            <a href="{{ route('events.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add
+                Event</a>
         </div>
         <h1 class="text-4xl font-bold mb-8">ALL ANNOUNCES</h1>
 
         <div class="overflow-x-auto">
+            @if (session('success'))
+                <div class="bg-green-500 text-white p-4 mb-4 rounded-md">
+                    {{ session('success') }}
+                </div>
+            @endif
             <table class="min-w-full bg-white border border-gray-300">
                 <thead>
                     <tr>
@@ -24,23 +30,25 @@
                 <tbody>
                     @forelse ($events as $event)
                         <tr>
-                            <th class="py-2 px-4">{{ $event->id }}</th>
-                            <th class="py-2 px-4">{{ $event->title }}</th>
-                            <th class="py-2 px-4">{{ $event->description }}</th>
-                            <th class="py-2 px-4">
+                            <td class="py-2 px-4">{{ $event->id }}</td>
+                            <td class="py-2 px-4">{{ $event->title }}</td>
+                            <td class="py-2 px-4">{{ $event->description }}</td>
+                            <td class="py-2 px-4">
                                 <img src="{{ asset($event->image) }}" alt="Event Image" class="w-16 h-16 object-cover">
-                            </th>
-                            <th class="py-2 px-4">{{ $event->date }}</th>
-                            <th class="py-2 px-4">{{ $event->location }}</th>
-                            <th class="py-2 px-4">{{ $event->availablePlaces }}</th>
-                            <th class="py-2 px-4">
-                                <button></button>
-                                <form action="{{route('events.destroy', $event)}}" method="POST">
+                            </td>
+                            <td class="py-2 px-4">{{ $event->date }}</td>
+                            <td class="py-2 px-4">{{ $event->location }}</td>
+                            <td class="py-2 px-4">{{ $event->availablePlaces }}</td>
+                            <td class="py-2">
+                                <button type="submit"
+                                    class="bg-green-500 text-white p-2 rounded-md hover:bg-green-700 block sm:inline">UPDATE</button>
+                                <form action="{{ route('events.destroy', $event) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" value="">
+                                    <button type="submit"
+                                        class="bg-red-500 text-white p-2 rounded-md hover:bg-red-700 block sm:inline">DELETE</button>
                                 </form>
-                            </th>
+                            </td>
                         </tr>
                     @empty
                         <tr>

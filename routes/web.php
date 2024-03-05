@@ -27,10 +27,12 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'show'])->name('logins');
 Route::post('/login', [LoginController::class, 'login'])->name('logiins');
 
-Route::get('/events/index', [EventController::class, 'index']);
+Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
 Route::post('/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
 
 Route::get('/events/create', function (){
     return view('events.create');
 });
+
+Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
     <div class="min-h-screen flex mx-auto p-4 bg-cover bg-center bg-repeat"
         style="background-image: url('/images/image1.jpg');">
         <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data"
