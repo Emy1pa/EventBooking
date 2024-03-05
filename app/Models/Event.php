@@ -16,7 +16,7 @@ class Event extends Model
         'image',
         'date',
         'location',
-        'AvailablePlaces',
+        'availablePlaces',
         'ReservationType' ,
         'status',
     ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
@@ -12,7 +13,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::query()->paginate(1);
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -20,15 +22,28 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $event = new Event();
+        return view('events.create', compact('event'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        //
+
+        $incomingFields = $request->validated();
+        $file_extension = $request->image->getClientOriginalExtension();
+        $file_name = time() . '.' . $file_extension;
+        $path = public_path('images/events');
+        $request->image->move($path, $file_name);
+
+        // Assurez-vous d'ajouter le chemin de l'image à votre tableau $incomingFields
+        $incomingFields['image'] = 'images/events/' . $file_name;
+
+        $event = Event::create($incomingFields);
+
+        // return to_route('events/index')->with('events', 'event created successfully');
     }
 
     /**

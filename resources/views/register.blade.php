@@ -20,19 +20,19 @@
                         <div class="w-1/3 pr-2">
                             <label class="block mb-2 text-[#0037AE]" for="firstname">FirstName</label>
                             <input id="firstname"
-                                class="w-full p-2 border-b-2 outline-none focus:bg-gray-300"
+                                class="text-black w-full p-2 border-b-2 outline-none focus:bg-gray-300"
                                 type="text" name="firstname" value="{{old('firstname')}}">
                         </div>
                         <div class="w-1/3 px-2">
                             <label class="block mb-2 text-[#0037AE]" for="lastname">LastName</label>
                             <input id="lastname"
-                                class="w-full p-2 border-b-2 outline-none focus:bg-gray-300"
+                                class="text-black w-full p-2 border-b-2 outline-none focus:bg-gray-300"
                                 type="text" name="lastname" value="{{old('lastname')}}">
                         </div>
                         <div class="w-1/3 pl-2">
                             <label class="block mb-2 text-[#0037AE]" for="email">Email</label>
                             <input id="email"
-                                class="w-full p-2 border-b-2 outline-none focus:bg-gray-300"
+                                class="text-black w-full p-2 border-b-2 outline-none focus:bg-gray-300"
                                 type="email" name="email" value="{{old('email')}}">
                         </div>
                     </div>                    
@@ -40,13 +40,13 @@
                         <div class="w-1/2 pr-2">
                             <label class="block mb-2 text-[#0037AE]" for="password">Password</label>
                             <input
-                                class="w-full p-2 border-b-2 outline-none focus:bg-gray-300"
+                                class="text-black w-full p-2 border-b-2 outline-none focus:bg-gray-300"
                                 type="password" name="password" value="{{old('password')}}">
                         </div>
                         <div class="w-1/2 pl-2">
                             <label class="block mb-2 text-[#0037AE]" for="cpassword"> C_Password</label>
                             <input
-                                class="w-full p-2 border-b-2 outline-none focus:bg-gray-300"
+                                class="text-black w-full p-2 border-b-2 outline-none focus:bg-gray-300"
                                 type="password" name="password_confirmation">
                         </div>
                     </div>
@@ -54,11 +54,11 @@
                     <div class="flex mb-6">
                         <div class="w-2/5 pr-2">
                             <label class="block mb-2 text-[#0037AE]" for="image">Your Profile</label>
-                            <input type="file" name="image" accept="image/*">
+                            <input type="file" name="image" accept="image/*" class="text-black">
                         </div>
                         <div class="w-2/5 px-2">
                             <label class="block mb-2 text-[#0037AE]" for="phone">Phone</label>
-                            <input id="phone" class="w-full p-2 border-b-2 outline-none focus:bg-gray-300 text-[#004DBB]" type="number" name="phone" value="{{old('phone')}}">
+                            <input id="phone" class="text-black w-full p-2 border-b-2 outline-none focus:bg-gray-300 text-[#004DBB]" type="number" name="phone" value="{{old('phone')}}">
                         </div>
                         <div class="w-1/5 pl-2">
                             <label class="block mb-2 text-[#0037AE]" for="role">Role</label>

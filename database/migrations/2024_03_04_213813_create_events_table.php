@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('image');
             $table->string('date');
             $table->string('location');
-            $table->string('AvailablePlaces');
+            $table->integer('availablePlaces')->default(0);
             $table->enum('ReservationType', ['automatically','manually'])->default('automatically');
             $table->enum('status', ['0','1'])->default('0');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

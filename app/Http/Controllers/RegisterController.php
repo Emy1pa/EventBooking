@@ -23,7 +23,7 @@ class RegisterController extends Controller
         if ($incomingFields['role'] === 'utilisateur') {
             return redirect('/utilisateur/dashboard');
         } elseif ($incomingFields['role'] === 'organisateur') {
-            return redirect('/organisateur/dashboard');
+            return redirect('/events/index');
         } else {
             return redirect('/login')->with('error', 'Invalid role');
         }
