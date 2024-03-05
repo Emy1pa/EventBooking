@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ForgetPasswordManager;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -25,3 +26,5 @@ Route::get('/registerr', function () {
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'show'])->name('logins');
 Route::post('/login', [LoginController::class, 'login'])->name('logiins');
+
+Route::resource('Event', EventController::class);
