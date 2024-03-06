@@ -11,12 +11,12 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::query()->paginate(10);
+        $categories = Category::query()->paginate(5);
         return view('admin.categories.index', compact('categories'));
     }
     public function create()
     {
-        $event = new Category();
+        $category = new Category();
         return view('admin.categories.create', compact('category'));
     }
 
@@ -40,7 +40,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        
     }
 
     /**

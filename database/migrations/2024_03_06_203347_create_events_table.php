@@ -21,8 +21,10 @@ return new class extends Migration
             $table->integer('availablePlaces')->default(0);
             $table->enum('ReservationType', ['automatically','manually'])->default('automatically');
             $table->enum('status', ['0','1'])->default('0');
-            $table->foreignId('category_id')->nullable()->constrained('events')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('user_id')->nullable()->constrained('events')->cascadeOnDelete()->cascadeOnUpdate();
+
+            // Corrected foreign key constraints
+            $table->foreignId('category_id')->nullable()->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->softDeletes();
             $table->timestamps();

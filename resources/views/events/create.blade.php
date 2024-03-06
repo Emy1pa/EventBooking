@@ -47,7 +47,6 @@
                         class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
-            
             <div class="mb-4 flex space-x-4">
                 <div class="w-1/2">
                     <label for="location" class="block text-sm font-semibold text-gray-600">Location:</label>
@@ -59,6 +58,16 @@
                     <input type="text" id="AvailablePlaces" name="availablePlaces" value="{{old('availablePlaces')}}" 
                         class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300">
                 </div>
+            </div>
+            <div class="mb-6">
+                <label for="category_id" class="block text-1xl font-semibold text-gray-800">Category:</label>
+                <select id="category_id" name="category_id"
+                    class="mt-2 p-4 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-400">
+                    <option value="">Please choose your category</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <button type="submit"

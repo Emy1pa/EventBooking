@@ -33,14 +33,14 @@ Route::get('/events/index', [EventController::class, 'index'])->name('events.ind
 Route::post('/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
 
-Route::get('/events/create', function (){
-    return view('events.create');
+Route::get('/events/create', function () {
+    $categories = \App\Models\Category::all();
+    return view('events.create', compact('categories'));
 });
 
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::get('/events/{event}', [EventController::class, 'edit'])->name('events.edit');
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
-
 Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
 
 

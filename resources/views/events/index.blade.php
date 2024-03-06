@@ -23,6 +23,7 @@
                         <th class="py-2 px-4">IMAGE</th>
                         <th class="py-2 px-4">DATE</th>
                         <th class="py-2 px-4">LOCATION</th>
+                        <th class="py-2 px-4">CATEGORY</th>
                         <th class="py-2 px-4">AVAILABLE PLACES</th>
                         <th class="py-2 px-4">ACTIONS</th>
                     </tr>
@@ -38,7 +39,10 @@
                             </td>
                             <td class="py-2 px-4">{{ $event->date }}</td>
                             <td class="py-2 px-4">{{ $event->location }}</td>
-                            <td class="py-2 px-4">{{ $event->availablePlaces }}</td>
+                            <td class="py-2 px-4">
+                                <span class="bg-blue-500 text-white px-2 py-1 rounded-md">{{ $event->category->title }}</span>
+                            </td>
+                            <td class="py-2 px-20">{{ $event->availablePlaces }}</td>
                             <td class="py-4 flex justify-center space-x-2">
                                 <a href="{{ route('events.update', $event) }}"
                                     class="bg-green-500 text-white p-2 rounded-md hover:bg-green-700">
@@ -54,7 +58,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td class="py-2 px-4" colspan="8">
+                            <td class="py-2 px-4" colspan="9">
                                 <h1 class="text-center">No annouces to show</h1>
                             </td>
                         </tr>

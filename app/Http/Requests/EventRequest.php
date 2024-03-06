@@ -28,6 +28,7 @@ class EventRequest extends FormRequest
             'location' => 'required|string',
             'availablePlaces' => 'required',
             'date' => 'required|date',
+            'category_id' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
