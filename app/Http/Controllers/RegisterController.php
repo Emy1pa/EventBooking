@@ -24,6 +24,9 @@ class RegisterController extends Controller
             return redirect('/utilisateur/index');
         } elseif ($incomingFields['role'] === 'organisateur') {
             return redirect('/events/index');
+        } else if($incomingFields['role'] === 'admin') {
+            return redirect('admin/categories/index');
+
         } else {
             return redirect('/login')->with('error', 'Invalid role');
         }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('status', ['0','1'])->default('0');
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('events')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

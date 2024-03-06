@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ForgetPasswordManager;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,17 @@ Route::get('/events/{event}', [EventController::class, 'edit'])->name('events.ed
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
 
 Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
+
+
+// Catgegory Routes :
+Route::get('admin/categories/index', [CategoryController::class, 'index'])->name('categories.index');
+Route::post('admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('admin/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+
+Route::get('admin/categories/create', function (){
+    return view('admin.categories.create');
+});
+
+Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('admin/categories/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');

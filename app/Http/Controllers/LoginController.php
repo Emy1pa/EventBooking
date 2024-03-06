@@ -24,11 +24,11 @@ class LoginController extends Controller
         $user = auth()->user();
 
         if ($user->role === 'utilisateur') {
-            return redirect('/utilisateur/dashboard');
+            return redirect('/utilisateur/index');
         } elseif ($user->role === 'organisateur') {
             return redirect('/events/index');
         } elseif ($user->role === 'admin') {
-            return redirect('/admin/dashboard');
+            return redirect('admin/categories/index');
         } else {
             auth()->logout();
             return redirect('/login')->with('error', 'Invalid role');
