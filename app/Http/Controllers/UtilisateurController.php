@@ -9,7 +9,7 @@ class UtilisateurController extends Controller
 {
     public function index()
     {
-        $events = Event::query()->paginate(2);
+        $events = Event::query()->paginate(3);
         return view('utilisateur.index', compact('events'));
     }
 }
