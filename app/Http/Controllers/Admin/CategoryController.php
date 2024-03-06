@@ -40,7 +40,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        
+        $events = $category->events()->paginate(10);
+        return view('admin.categories.show', compact('category', 'events'));
     }
 
     /**

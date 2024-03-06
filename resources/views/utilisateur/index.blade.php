@@ -14,6 +14,8 @@
                     <div class="flex justify-between items-center mb-2">
                         <span class="bg-blue-500 text-white p-1 rounded-md">{{ $event->availablePlaces }} places available</span>
                         <span class="bg-green-500 text-white p-1 rounded-md">{{ $event->location }}</span>
+                        <!-- Display Category -->
+                        <span class="bg-purple-500 text-white p-1 rounded-md">{{ $event->category->title }}</span>
                     </div>
 
                     <p class="text-gray-500 mb-1">

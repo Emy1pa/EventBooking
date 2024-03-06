@@ -54,5 +54,6 @@ Route::get('admin/categories/create', function (){
 });
 
 Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-Route::get('admin/categories/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::get('admin/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');

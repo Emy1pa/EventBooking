@@ -13,7 +13,7 @@ class Category extends Model
         
         'title',
     ];
-    public function event()
+    public function events()
     {
         return $this->hasMany(Event::class);
     }

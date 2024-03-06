@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 
 @section('content')
@@ -38,6 +37,10 @@
                                     <button type="submit"
                                         class="bg-red-500 text-white p-2 rounded-md hover:bg-red-700 block sm:inline">DELETE</button>
                                 </form>
+                                <a href="{{ route('categories.show', $category) }}"
+                                    class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">
+                                    SHOW
+                                </a>
                             </td>
                         </tr>
                     @empty
