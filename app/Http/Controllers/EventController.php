@@ -59,15 +59,19 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.edit', compact('event'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        //
+        $formFields = $request->validated();
+        $event->fill($formFields)->save();
+        return redirect()->route('events.index')->with('success', 'Event updated successfully');
+
     }
 
     /**

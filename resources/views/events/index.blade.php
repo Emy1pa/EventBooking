@@ -39,9 +39,11 @@
                             <td class="py-2 px-4">{{ $event->date }}</td>
                             <td class="py-2 px-4">{{ $event->location }}</td>
                             <td class="py-2 px-4">{{ $event->availablePlaces }}</td>
-                            <td class="py-2">
-                                <button type="submit"
-                                    class="bg-green-500 text-white p-2 rounded-md hover:bg-green-700 block sm:inline">UPDATE</button>
+                            <td class="py-4 flex justify-center space-x-2">
+                                <a href="{{ route('events.update', $event) }}"
+                                    class="bg-green-500 text-white p-2 rounded-md hover:bg-green-700">
+                                    UPDATE
+                                </a>
                                 <form action="{{ route('events.destroy', $event) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
