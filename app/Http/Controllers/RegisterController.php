@@ -21,7 +21,7 @@ class RegisterController extends Controller
 
         $user = User::create($incomingFields);
         if ($incomingFields['role'] === 'utilisateur') {
-            return redirect('/utilisateur/dashboard');
+            return redirect('/utilisateur/index');
         } elseif ($incomingFields['role'] === 'organisateur') {
             return redirect('/events/index');
         } else {

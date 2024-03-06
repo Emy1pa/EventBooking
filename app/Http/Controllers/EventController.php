@@ -13,7 +13,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::query()->paginate(1);
+        $events = Event::query()->paginate(2);
         return view('events.index', compact('events'));
     }
 
@@ -66,13 +66,41 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EventRequest $request, Event $event)
-    {
-        $formFields = $request->validated();
-        $event->fill($formFields)->save();
-        return redirect()->route('events.index')->with('success', 'Event updated successfully');
+    // public function update(EventRequest $request, Event $event)
+    // {
+    //     $formFields = $request->validated();
+    //     $event->fill($formFields)->save();
+    //     return redirect()->route('events.index')->with('success', 'Event updated successfully');
 
+    // }
+    public function update(EventRequest $request, Event $event)
+{
+    $formFields = $request->validated();
+
+    if ($request->hasFile('image')) {
+        // Supprimer l'ancienne image si elle existe
+        if ($event->image) {
+            $imagePath = public_path($event->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        // Télécharger et stocker la nouvelle image
+        $file_extension = $request->file('image')->getClientOriginalExtension();
+        $file_name = time() . '.' . $file_extension;
+        $path = public_path('images/events');
+        $request->file('image')->move($path, $file_name);
+
+        // Mettre à jour le chemin de l'image dans la base de données
+        $formFields['image'] = 'images/events/' . $file_name;
     }
+
+    $event->fill($formFields)->save();
+
+    return redirect()->route('events.index')->with('success', 'Event updated successfully');
+}
+
 
     /**
      * Remove the specified resource from storage.
