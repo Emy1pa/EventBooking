@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ForgetPasswordManager;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +63,4 @@ Route::put('admin/categories/{category}', [CategoryController::class, 'update'])
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/user/{id}', [UserController::class, 'update'])->name('users.update');
+Route::get('/statistics', [StatisticsController::class, 'index'])->name('admin.statistics');

@@ -1,20 +1,21 @@
 @extends('layouts.master')
 
 @section('content')
-<header class="p-4">
+<header class="p-4 bg-gray-800 text-white">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo or site name can go here -->
-        <a href="" class="text-lg font-bold">EventBooking</a>
+        <a href="#" class="text-lg font-bold">EventBooking</a>
 
         <!-- Navigation Links -->
         <nav class="flex space-x-4">
             <a href="{{ route('categories.index') }}">Categories</a>
-            <a href="#">Statistics</a>
-            <a href="{{ route('users.index') }}">Users</a>
-            <a href="#">Log Out</a>
+            <a href="{{ route('admin.statistics') }}">Statistics</a>
+            <a href="{{ route('users.index') }}" class="text-blue-300 hover:text-blue-400">Users</a>
+            <a href="#" class="hover:text-red-500">Log Out</a>
         </nav>
     </div>
 </header>
+
     <div class="container mx-auto p-8">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-4xl font-bold">ALL USERS</h1>

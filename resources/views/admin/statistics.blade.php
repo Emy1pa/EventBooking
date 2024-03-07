@@ -1,0 +1,42 @@
+@extends('layouts.master')
+
+@section('content')
+<header class="p-4 bg-gray-800 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo or site name can go here -->
+        <a href="#" class="text-lg font-bold">EventBooking</a>
+
+        <!-- Navigation Links -->
+        <nav class="flex space-x-4">
+            <a href="{{ route('categories.index') }}">Categories</a>
+            <a href="{{ route('admin.statistics') }}" class="text-blue-300 hover:text-blue-400">Statistics</a>
+            <a href="{{ route('users.index') }}">Users</a>
+            <a href="#" class="hover:text-red-500">Log Out</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container mx-auto mt-10 flex justify-center space-x-8">
+    <!-- First Stats Container -->
+    <div class="w-72 bg-white max-w-xs rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
+        <div class="h-20 bg-red-500 flex items-center justify-between">
+            <p class="mr-0 text-white text-lg pl-5">USERS</p>
+        </div>
+        <div class="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600">
+            <p class="text-gray-500">TOTAL</p>
+        </div>
+        <p class="py-4 text-3xl ml-5 font-bold">{{ $totalUsers }}</p>
+    </div>
+
+    <!-- Second Stats Container -->
+    <div class="w-72 bg-white max-w-xs rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
+        <div class="h-20 bg-blue-500 flex items-center justify-between">
+            <p class="mr-0 text-white text-lg pl-5">CATEGORIES</p>
+        </div>
+        <div class="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600">
+            <p class="text-gray-500">TOTAL</p>
+        </div>
+        <p class="py-4 text-3xl ml-5 font-bold">{{ $totalCategories }}</p>
+    </div>
+</div>
+@endsection
