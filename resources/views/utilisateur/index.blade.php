@@ -5,33 +5,37 @@
         <!-- Sidebar with filters -->
         <aside class="w-full md:w-1/4 p-4 bg-gray-100">
             <h2 class="text-lg font-bold mb-4">Filters</h2>
-            <!-- Add your filter options here -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700">Category</label>
-                <select class="mt-1 p-2 border rounded-md w-full">
-                    <option>All Categories</option>
-                    <!-- Add category options dynamically if needed -->
-                </select>
-            </div>
+            <form method="GET">
+                <!-- Category filter -->
+                <div class="mb-4">
+                    <h3 class="text-sm font-bold text-gray-700 mb-2">Category</h3>
+                    @foreach ($categories as $category)
+                        <div class="flex items-center mb-2">
+                            <input type="checkbox" name="categories[]" value="{{$category->id}}" id="category-{{$category->id}}" class="text-blue-500 focus:ring focus:border-blue-300">
+                            <label for="category-{{$category->id}}" class="text-sm ml-2">{{$category->title}}</label>
+                        </div>
+                    @endforeach
+                </div>
 
-            <!-- Search by title -->
-            <div class="mb-4">
-                <form method="GET">
-                    <label class="block text-sm font-medium text-gray-700" for="title">Search by Title</label>
+                <!-- Search by title -->
+                <div class="mb-4">
+                    <label class="block text-sm font-bold text-gray-700" for="title">Search by Title</label>
                     <input id="title" name="title" type="text" class="mt-1 p-2 border rounded-md w-full" placeholder="Enter title">
                     
                     <!-- Filter button -->
                     <button type="submit" class="w-full mt-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300">
                         Filter
                     </button>
-                </form>
-            </div>
-            <!-- Add more filters as needed -->
+                    <a href="{{route('utilisateur.index')}}" type="reset" class="text-center w-full mt-2 p-2 bg-gray-500 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:border-blue-300">
+                        Reset
+                    </a>
+                </div>
+            </form>
         </aside>
 
         <!-- Main content area -->
         <div class="w-full md:w-3/4 p-8">
-            <h1 class="text-4xl font-bold mb-8">ALL ANNOUNCES</h1>
+            <h1 class="text-4xl font-bold mb-8">ALL EVENTS</h1>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @foreach ($events as $event)
