@@ -61,3 +61,4 @@ Route::put('admin/categories/{category}', [CategoryController::class, 'update'])
 
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/user/{id}', [UserController::class, 'update'])->name('users.update');
