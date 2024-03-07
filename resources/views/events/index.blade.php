@@ -5,7 +5,6 @@
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-4xl font-bold">ALL ANNOUNCES</h1>
             <div class="flex space-x-2">
-                <a href="{{ route('categories.index') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Categories</a>
                 <a href="{{ route('events.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Event</a>
             </div>
         </div>

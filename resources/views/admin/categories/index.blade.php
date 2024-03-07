@@ -10,7 +10,7 @@
         <nav class="flex space-x-4">
             <a href="{{ route('categories.index') }}">Categories</a>
             <a href="#">Statistics</a>
-            <a href="#">Users</a>
+            <a href="{{ route('users.index') }}">Users</a>
             <a href="#">Log Out</a>
         </nav>
     </div>

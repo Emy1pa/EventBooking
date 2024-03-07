@@ -18,6 +18,8 @@ class RegisterController extends Controller
         $file_name = time() . '.' . $file_extension;
         $path = 'images/users';
         $request->image->move($path, $file_name);
+        $incomingFields['image'] = 'images/users/' . $file_name;
+
 
         $user = User::create($incomingFields);
         if ($incomingFields['role'] === 'utilisateur') {

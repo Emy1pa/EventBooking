@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\ForgetPasswordManager;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ForgetPasswordManager;
 use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,6 @@ Route::delete('admin/categories/{category}', [CategoryController::class, 'destro
 Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::get('admin/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');

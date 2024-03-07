@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
             'lastname' => ['required', 'min:3', 'max:10', Rule::unique('users', 'lastname')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'min:8', 'max:200', 'confirmed'],
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:5120'],
             'phone' => ['required', 'numeric'],
             'role' => ['required', Rule::in(['utilisateur', 'organisateur', 'admin'])],
         ];

@@ -21,7 +21,8 @@ class UtilisateurController extends Controller
         if(!empty($categoriesIds)){
             $eventQuery->whereIn('category_id', $categoriesIds);
         }
+        $paginatedEvents = $eventQuery->paginate(4); // Change 2 to the number of events you want per page
         $events = $eventQuery->get();
-        return view('utilisateur.index', compact('events', 'categories'));
+        return view('utilisateur.index', compact('events', 'paginatedEvents', 'categories'));
     }
 }

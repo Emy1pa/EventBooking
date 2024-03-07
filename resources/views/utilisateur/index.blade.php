@@ -65,7 +65,7 @@
             </div>
 
             <div class="mt-4">
-                {{-- {{ $events->links() }} --}}
+                {{ $paginatedEvents->links() }}
             </div>
         </div>
     </div>
