@@ -1,11 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
+           
 @if (session('success'))
     <div class="bg-green-500 text-white p-4 mb-4 rounded-md">
         {{ session('success') }}
     </div>
 @endif
+<form action="/logout" method="post" class="absolute top-0 right-0 mt-4 mr-4">
+    @csrf
+    <button type="submit"
+            class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-md text-sm px-5 py-2.5">
+        Log out
+    </button>
+</form>
     <div class="min-h-screen flex mx-auto p-4 bg-cover bg-center bg-repeat"
         style="background-image: url('/images/image1.jpg');">
         <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data"

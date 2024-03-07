@@ -30,6 +30,8 @@ Route::get('/registerr', function () {
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'show'])->name('logins');
 Route::post('/login', [LoginController::class, 'login'])->name('logiins');
+Route::post('/logout', [LoginController::class, 'logout']);
+
 
 Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
 Route::post('/events/create', [EventController::class, 'create'])->name('events.create');

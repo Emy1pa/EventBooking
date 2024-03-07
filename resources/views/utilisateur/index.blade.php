@@ -1,6 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
+<header class="p-4 bg-gray-800 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo or site name can go here -->
+        <a href="#" class="text-lg font-bold">EventBooking</a>
+
+        <!-- Navigation Links -->
+        <nav class="flex space-x-4 items-center">
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                    Log out
+                </button>
+            </form>
+        </nav>
+    </div>
+</header>
     <div class="container mx-auto flex flex-wrap">
         <!-- Sidebar with filters -->
         <aside class="w-full md:w-1/4 p-4 bg-gray-100">

@@ -7,70 +7,74 @@
         <a href="#" class="text-lg font-bold">EventBooking</a>
 
         <!-- Navigation Links -->
-        <nav class="flex space-x-4">
-            <a href="{{ route('categories.index') }}"  class="text-blue-300 hover:text-blue-400">Categories</a>
+        <nav class="flex space-x-4 items-center">
+            <a href="{{ route('categories.index') }}" class="text-blue-300 hover:text-blue-400">Categories</a>
             <a href="{{ route('admin.statistics') }}">Statistics</a>
             <a href="{{ route('users.index') }}">Users</a>
-            <a href="#" class="hover:text-red-500">Log Out</a>
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                    Log out
+                </button>
+            </form>
         </nav>
     </div>
 </header>
 
-
-    <div class="container mx-auto p-8">
-        <div class="flex justify-end mb-4">
-            <a href="{{ route('categories.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Category</a>
-        </div>
-        <h1 class="text-4xl font-bold mb-8">Categories</h1>
-
-        <div class="overflow-x-auto">
-            @if (session('success'))
-                <div class="bg-green-500 text-white p-4 mb-4 rounded-md">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <table class="min-w-full bg-white border border-gray-300">
-                <thead>
-                    <tr>
-                        <th class="py-2 px-4">#ID</th>
-                        <th class="py-2 px-4">NAME</th>
-                        <th class="py-2 px-4">ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($categories as $category)
-                        <tr>
-                            <td class="py-2 px-4">{{ $category->id }}</td>
-                            <td class="py-2 px-4 text-red">{{ $category->title }}</td>
-                            <td class="py-4 flex justify-center space-x-2">
-                                <a href="{{ route('categories.edit', $category) }}"
-                                    class="bg-green-500 text-white p-2 rounded-md hover:bg-green-700">
-                                    UPDATE
-                                </a>
-                                <form action="{{ route('categories.destroy', $category) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="bg-red-500 text-white p-2 rounded-md hover:bg-red-700 block sm:inline">DELETE</button>
-                                </form>
-                                <a href="{{ route('categories.show', $category) }}"
-                                    class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">
-                                    SHOW
-                                </a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td class="py-2 px-4" colspan="3">
-                                <h1 class="text-center">No categories to show</h1>
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <div class="mt-4">
-            {{ $categories->links() }}
-        </div>
+<div class="container mx-auto p-8">
+    <div class="flex justify-end mb-4">
+        <a href="{{ route('categories.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Category</a>
     </div>
+    <h1 class="text-4xl font-bold mb-8">Categories</h1>
+
+    <div class="overflow-x-auto">
+        @if (session('success'))
+            <div class="bg-green-500 text-white p-4 mb-4 rounded-md">
+                {{ session('success') }}
+            </div>
+        @endif
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4">#ID</th>
+                    <th class="py-2 px-4">NAME</th>
+                    <th class="py-2 px-4">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($categories as $category)
+                    <tr>
+                        <td class="py-2 px-4">{{ $category->id }}</td>
+                        <td class="py-2 px-4 text-red">{{ $category->title }}</td>
+                        <td class="py-4 flex justify-center space-x-2">
+                            <a href="{{ route('categories.edit', $category) }}"
+                                class="bg-green-500 text-white p-2 rounded-md hover:bg-green-700">
+                                UPDATE
+                            </a>
+                            <form action="{{ route('categories.destroy', $category) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="bg-red-500 hover:bg-red-700 text-white p-2 rounded-md block sm:inline">DELETE</button>
+                            </form>
+                            <a href="{{ route('categories.show', $category) }}"
+                                class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">
+                                SHOW
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td class="py-2 px-4" colspan="3">
+                            <h1 class="text-center">No categories to show</h1>
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        {{ $categories->links() }}
+    </div>
+</div>
 @endsection

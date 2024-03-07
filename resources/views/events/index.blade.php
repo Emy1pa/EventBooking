@@ -1,11 +1,18 @@
 @extends('layouts.master')
 
 @section('content')
+<form action="/logout" method="post" class="absolute top-0 right-0 mt-2 mr-2">
+    @csrf
+    <button type="submit"
+            class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-md text-sm px-5 py-2.5">
+        Log out
+    </button>
+</form>
     <div class="container mx-auto p-8">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-4xl font-bold">ALL ANNOUNCES</h1>
             <div class="flex space-x-2">
-                <a href="{{ route('events.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Event</a>
+                <a href="{{ route('events.create') }}" class="bg-blue-500 text-white p-2  mt-8 rounded-md hover:bg-blue-700">Add Event</a>
             </div>
         </div>
 
@@ -44,7 +51,7 @@
                             <span class="bg-blue-500 text-white px-2 py-1 rounded-md">{{ $event->category->title }}</span>
                         </td>
                         <td class="py-2 px-20">{{ $event->availablePlaces }}</td>
-                        <td class="py-4 flex justify-center space-x-2">
+                        <td class="py-4 mr-4 flex justify-center space-x-2">
                             <a href="{{ route('events.update', $event) }}"
                                 class="bg-green-500 text-white p-2 rounded-md hover:bg-green-700">
                                 UPDATE

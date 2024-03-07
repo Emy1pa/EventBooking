@@ -7,11 +7,16 @@
         <a href="#" class="text-lg font-bold">EventBooking</a>
 
         <!-- Navigation Links -->
-        <nav class="flex space-x-4">
+        <nav class="flex space-x-4 items-center">
             <a href="{{ route('categories.index') }}">Categories</a>
-            <a href="{{ route('admin.statistics') }}" class="text-blue-300 hover:text-blue-400">Statistics</a>
-            <a href="{{ route('users.index') }}">Users</a>
-            <a href="#" class="hover:text-red-500">Log Out</a>
+            <a href="{{ route('admin.statistics') }}"  class="text-blue-300 hover:text-blue-400">Statistics</a>
+            <a href="{{ route('users.index') }}" >Users</a>
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                    Log out
+                </button>
+            </form>
         </nav>
     </div>
 </header>

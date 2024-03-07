@@ -66,4 +66,5 @@ class RegisterRequest extends FormRequest
             'role.in' => 'The selected role is invalid.',
         ];
     }
+   
 }
