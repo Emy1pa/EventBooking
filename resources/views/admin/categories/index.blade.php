@@ -1,6 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
+<header class="p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo or site name can go here -->
+        <a href="" class="text-lg font-bold">EventBooking</a>
+
+        <!-- Navigation Links -->
+        <nav class="flex space-x-4">
+            <a href="{{ route('categories.index') }}">Categories</a>
+            <a href="#">Statistics</a>
+            <a href="#">Users</a>
+            <a href="#">Log Out</a>
+        </nav>
+    </div>
+</header>
+
+
     <div class="container mx-auto p-8">
         <div class="flex justify-end mb-4">
             <a href="{{ route('categories.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Category</a>
