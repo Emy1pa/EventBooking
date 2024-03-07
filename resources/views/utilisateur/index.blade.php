@@ -16,9 +16,14 @@
 
             <!-- Search by title -->
             <div class="mb-4">
-                <form action="">
-                <label class="block text-sm font-medium text-gray-700">Search by Title</label>
-                <input type="text" class="mt-1 p-2 border rounded-md w-full" placeholder="Enter title">
+                <form method="GET">
+                    <label class="block text-sm font-medium text-gray-700" for="title">Search by Title</label>
+                    <input id="title" name="title" type="text" class="mt-1 p-2 border rounded-md w-full" placeholder="Enter title">
+                    
+                    <!-- Filter button -->
+                    <button type="submit" class="w-full mt-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300">
+                        Filter
+                    </button>
                 </form>
             </div>
             <!-- Add more filters as needed -->
@@ -56,7 +61,7 @@
             </div>
 
             <div class="mt-4">
-                {{ $events->links() }}
+                {{-- {{ $events->links() }} --}}
             </div>
         </div>
     </div>

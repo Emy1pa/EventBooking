@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class UtilisateurController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::query()->paginate(3);
+
+        $eventQuery = Event::query();
+        $title = ($request->input('title'));
+        if(!empty($title)){
+            $eventQuery->where('title', 'like', "%{$title}%");
+        }
+        $events = $eventQuery->get();
         return view('utilisateur.index', compact('events'));
     }
 }
