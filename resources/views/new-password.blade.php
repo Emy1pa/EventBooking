@@ -15,18 +15,21 @@
             <form action="{{ route('reset.password.post') }}" method="POST">
                 @csrf
                 <input type="text" hidden value="{{ $token }}" name="token">
+
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" id="email" name="email"
                         class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-400">
                 </div>
+
                 <div class="mb-4">
-                    <label for="password" class="block text-sm font-medium text-gray-700">Enter new password</label>
+                    <label for="password" class="block text-sm font-medium text-gray-700">New Password</label>
                     <input type="password" id="password" name="password"
                         class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-400">
                 </div>
+
                 <div class="mb-4">
-                    <label for="c_password" class="block text-sm font-medium text-gray-700">Confrim new password</label>
+                    <label for="c_password" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
                     <input type="password" id="c_password" name="password_confirmation"
                         class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-400">
                 </div>
