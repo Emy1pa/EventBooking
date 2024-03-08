@@ -75,3 +75,8 @@ Route::get('/user/{id}', [UserController::class, 'update'])->name('users.update'
 
 Route::get('/statistics', [StatisticsController::class, 'index'])->name('admin.statistics');
 
+// ForgetPassword
+Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forget.password');
+Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.password.post');
+Route::get('/reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
+Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');

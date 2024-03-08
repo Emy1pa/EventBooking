@@ -40,8 +40,7 @@
 
                     <!-- Password reset link -->
                     <p class="mt-2 text-sm text-[#04BB83] hover:text-[#00875F]">
-                        <a href="#">Forgot your password? Reset it here.</a>
-                        {{-- <a href="{{ route('forget-password') }}">Forgot your password? Reset it here.</a> --}}
+                        <a href="{{ route('forget.password') }}">Forgot your password? Reset it here.</a>
                     </p>
                 </form>
 
