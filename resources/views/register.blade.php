@@ -74,7 +74,7 @@
                     </div>
                 </form>
                 <div class="text-center">
-                    <p class="text-[#0037AE]">Already have an account? <a href="/login" class="font-bold text-[#0037AE]">LOGIN HERE</a></p>
+                    <p class="text-[#0037AE]">Already have an account? <a href="/login" class="font-bold text-[#0037AE]">LOGIN HERE!</a></p>
                 </div>
             </div>
         </div>
