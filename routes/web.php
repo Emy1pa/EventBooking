@@ -24,45 +24,54 @@ use App\Http\Controllers\Admin\StatisticsController;
 Route::get('/', function () {
     return view('home');
 });
+// REGISTERS ROUTE
 Route::get('/registerr', function () {
     return view('register');
 });
 Route::post('/register', [RegisterController::class, 'store']);
+
+// LOGIN ROUTES
+
 Route::get('/login', [LoginController::class, 'show'])->name('logins');
 Route::post('/login', [LoginController::class, 'login'])->name('logiins');
+
+// LOGOUT ROUTE
+
 Route::post('/logout', [LoginController::class, 'logout']);
 
+// EVENTS ROUTES
 
 Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
 Route::post('/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
-
 Route::get('/events/create', function () {
     $categories = \App\Models\Category::all();
     return view('events.create', compact('categories'));
 });
-
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::get('/events/{event}', [EventController::class, 'edit'])->name('events.edit');
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
-Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
 
+// ADMIN ROUTES :
 
-// Catgegory Routes :
 Route::get('admin/categories/index', [CategoryController::class, 'index'])->name('categories.index');
 Route::post('admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('admin/categories/store', [CategoryController::class, 'store'])->name('categories.store');
-
 Route::get('admin/categories/create', function (){
     return view('admin.categories.create');
 });
-
 Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::get('admin/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
+// USER ROUTE
 
+Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/user/{id}', [UserController::class, 'update'])->name('users.update');
+
+// STATISTICS ROUTE
+
 Route::get('/statistics', [StatisticsController::class, 'index'])->name('admin.statistics');
+

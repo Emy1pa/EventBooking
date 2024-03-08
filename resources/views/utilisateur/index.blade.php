@@ -4,7 +4,7 @@
 <header class="p-4 bg-gray-800 text-white">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo or site name can go here -->
-        <a href="#" class="text-lg font-bold">EventBooking</a>
+        <a href="{{route('utilisateur.index')}}" class="text-lg font-bold">EventBooking</a>
 
         <!-- Navigation Links -->
         <nav class="flex space-x-4 items-center">

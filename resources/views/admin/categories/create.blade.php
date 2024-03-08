@@ -32,7 +32,13 @@
             class="w-full p-4 bg-blue-600 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring focus:border-blue-400">
             Create Category
         </button>
+        <button
+            class="mt-2 w-full p-4 bg-gray-600 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:border-blue-400">
+            <a href="{{ url()->previous() }}">Go Back</a>
+        </button>
+        </button>
     </form>
+    
 </div>
 </div>
 @endsection
