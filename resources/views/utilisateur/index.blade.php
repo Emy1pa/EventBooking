@@ -71,11 +71,32 @@
                             <span class="text-blue-600">{{ $event->date }}</span>
                         </p>
 
-                        <div class="flex justify-center">
-                            <button class="w-full bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring focus:border-yellow-300">
+                        <form action="{{ route('events.reserve', $event) }}" method="post">
+                            @csrf
+                            <button type="submit"
+                                class="w-full bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring focus:border-yellow-300">
                                 Reserve
                             </button>
-                        </div>
+                        </form>
+
+                        @php
+                            $userReservations = auth()->user()->reservations;
+                            $eventReservation = $userReservations ? $userReservations->where('event_id', $event->id)->first() : null;
+                        @endphp
+
+                        @if ($eventReservation && $eventReservation->ticket)
+                            <a href="{{ route('events.ticket', $eventReservation) }}"
+                                class="text-blue-500 hover:text-blue-700">
+                                View Ticket
+                            </a>
+                        @elseif ($eventReservation)
+                            <form action="{{ route('showticket', $eventReservation) }}" method="post">
+                                @csrf
+                                <button type="submit" class="text-blue-500 hover:text-blue-700">
+                                    Get Ticket
+                                </button>
+                            </form>
+                        @endif
                     </div>
                 @endforeach
             </div>

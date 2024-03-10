@@ -27,7 +27,7 @@ class Event extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function reservation()
+    public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }

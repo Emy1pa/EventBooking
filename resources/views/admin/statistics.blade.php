@@ -11,6 +11,7 @@
             <a href="{{ route('categories.index') }}">Categories</a>
             <a href="{{ route('admin.statistics') }}" class="text-blue-300 hover:text-blue-400">Statistics</a>
             <a href="{{ route('users.index') }}">Users</a>
+            <a href="{{ route('admin.events.index') }}">Events Approval</a>
             <form action="/logout" method="post">
                 @csrf
                 <button type="submit"

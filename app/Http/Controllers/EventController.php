@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -15,7 +16,9 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::where('status', 'accepted')->with('category')->paginate(10);
-        return view('events.index', compact('events'));
+        $userReservations = Auth::user()->reservations;
+        
+        return view('events.index', compact('events', 'userReservations'));
     }
 
     /**

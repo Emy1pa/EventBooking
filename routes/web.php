@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminEventController;
 use App\Http\Controllers\ForgetPasswordManager;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StatisticsController;
@@ -52,6 +53,7 @@ Route::get('/events/create', function () {
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::get('/events/{event}', [EventController::class, 'edit'])->name('events.edit');
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+
 });
 
 // ADMIN ROUTES :
@@ -76,8 +78,12 @@ Route::post('/events/reject/{event}', [AdminEventController::class, 'reject'])->
 // USER ROUTE
 Route::middleware(['role:utilisateur'])->group(function () {
 Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
+Route::post('/events/reserve/{event}', [ReservationController::class, 'reserve'])->name('events.reserve');
+Route::post('/reservations/ticket/{reservation}', [ReservationController::class, 'showTicket'])->name('events.ticket');
+Route::post('/showticket/{event}', [ReservationController::class, 'generateTicket'])->name('showticket');
 
 });
+
 // ForgetPassword
 Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forget.password');
 Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.password.post');

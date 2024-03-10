@@ -1,13 +1,26 @@
 @extends('layouts.master')
 
 @section('content')
-    <form action="/logout" method="post" class="absolute top-0 right-0 mt-2 mr-2">
-        @csrf
-        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-md text-sm px-5 py-2.5">
-            Log out
-        </button>
-    </form>
+<header class="p-4 bg-gray-800 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo or site name can go here -->
+        <a href="{{ route('categories.index') }}" class="text-lg font-bold">EventBooking</a>
 
+        <!-- Navigation Links -->
+        <nav class="flex space-x-4 items-center">
+            <a href="{{ route('categories.index') }}">Categories</a>
+            <a href="{{ route('admin.statistics') }}">Statistics</a>
+            <a href="{{ route('users.index') }}">Users</a>
+            <a href="{{ route('admin.events.index') }}" class="text-blue-300 hover:text-blue-400">Events Approval</a> <!-- Add this line -->
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                    Log out
+                </button>
+            </form>
+        </nav>
+    </div>
+</header>
     <div class="container mx-auto p-8">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-4xl font-bold">ALL EVENTS</h1>

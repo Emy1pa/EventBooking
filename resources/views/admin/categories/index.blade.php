@@ -11,7 +11,7 @@
             <a href="{{ route('categories.index') }}" class="text-blue-300 hover:text-blue-400">Categories</a>
             <a href="{{ route('admin.statistics') }}">Statistics</a>
             <a href="{{ route('users.index') }}">Users</a>
-            <a href="{{ route('admin.events.index') }}" class="text-blue-300 hover:text-blue-400">Events Approval</a> <!-- Add this line -->
+            <a href="{{ route('admin.events.index') }}">Events Approval</a> <!-- Add this line -->
             <form action="/logout" method="post">
                 @csrf
                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-lg text-sm px-5 py-2.5">
