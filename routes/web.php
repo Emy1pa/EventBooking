@@ -5,6 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AdminEventController;
 use App\Http\Controllers\ForgetPasswordManager;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -68,6 +69,9 @@ Route::put('admin/categories/{category}', [CategoryController::class, 'update'])
 Route::get('/statistics', [StatisticsController::class, 'index'])->name('admin.statistics');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/user/{id}', [UserController::class, 'update'])->name('users.update');
+Route::get('/events', [AdminEventController::class, 'index'])->name('admin.events.index');
+Route::post('/events/approve/{event}', [AdminEventController::class, 'approve'])->name('admin.events.approve');
+Route::post('/events/reject/{event}', [AdminEventController::class, 'reject'])->name('admin.events.reject');
 });
 // USER ROUTE
 Route::middleware(['role:utilisateur'])->group(function () {

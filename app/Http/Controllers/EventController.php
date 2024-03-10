@@ -14,7 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::query()->with('category')->paginate(10);
+        $events = Event::where('status', 'accepted')->with('category')->paginate(10);
         return view('events.index', compact('events'));
     }
 
@@ -40,9 +40,10 @@ class EventController extends Controller
         $file_name = time() . '.' . $file_extension;
         $path = public_path('images/events');
         $request->image->move($path, $file_name);
-
-        // Assurez-vous d'ajouter le chemin de l'image à votre tableau $incomingFields
         $incomingFields['image'] = 'images/events/' . $file_name;
+
+        $incomingFields['status'] = 'pending';
+
 
         $event = Event::create($incomingFields);
 
