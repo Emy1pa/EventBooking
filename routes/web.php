@@ -79,8 +79,8 @@ Route::post('/events/reject/{event}', [AdminEventController::class, 'reject'])->
 Route::middleware(['role:utilisateur'])->group(function () {
 Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
 Route::post('/events/reserve/{event}', [ReservationController::class, 'reserve'])->name('events.reserve');
-Route::post('/reservations/ticket/{reservation}', [ReservationController::class, 'showTicket'])->name('events.ticket');
-Route::post('/showticket/{event}', [ReservationController::class, 'generateTicket'])->name('showticket');
+Route::post('/reservations/ticket/{reservation}', [ReservationController::class, 'generateTicket'])->name('events.ticket');
+Route::post('/showticket/{event}', [ReservationController::class, 'showTicket'])->name('showticket');
 
 });
 

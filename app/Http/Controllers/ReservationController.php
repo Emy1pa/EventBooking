@@ -31,11 +31,22 @@ class ReservationController extends Controller
 }
 
 
-    public function generateTicket(Reservation $reservation)
-    {
-        // You can customize this part to generate a unique and meaningful ticket
-        return 'TICKET-' . now()->timestamp . '-' . auth()->id();
-    }
+public function generateTicket(Reservation $reservation)
+{
+    $event = $reservation->event;
+
+    // Customize this part to include more details on the ticket
+    $ticketDetails = sprintf(
+        'TICKET-%s-%s-%s-%s',
+        $event->title,
+        now()->format('YmdHis'), // Add current date and time for uniqueness
+        auth()->id(),
+        $reservation->id // Include reservation ID for reference
+    );
+
+    return $ticketDetails;
+}
+
 
     public function showTicket(Reservation $reservation)
     {

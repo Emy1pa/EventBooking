@@ -1,5 +1,3 @@
-<!-- resources/views/tickets/show.blade.php -->
-
 @extends('layouts.master')
 
 @section('content')
