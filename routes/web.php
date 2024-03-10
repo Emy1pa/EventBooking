@@ -40,7 +40,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('logiins');
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // EVENTS ROUTES
-
+Route::middleware(['role:organisateur'])->group(function () {
 Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
 Route::post('/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
@@ -51,9 +51,10 @@ Route::get('/events/create', function () {
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::get('/events/{event}', [EventController::class, 'edit'])->name('events.edit');
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+});
 
 // ADMIN ROUTES :
-
+Route::middleware(['role:admin'])->group(function () {
 Route::get('admin/categories/index', [CategoryController::class, 'index'])->name('categories.index');
 Route::post('admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('admin/categories/store', [CategoryController::class, 'store'])->name('categories.store');
@@ -64,17 +65,15 @@ Route::delete('admin/categories/{category}', [CategoryController::class, 'destro
 Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::get('admin/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-
-// USER ROUTE
-
-Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
+Route::get('/statistics', [StatisticsController::class, 'index'])->name('admin.statistics');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/user/{id}', [UserController::class, 'update'])->name('users.update');
+});
+// USER ROUTE
+Route::middleware(['role:utilisateur'])->group(function () {
+Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
 
-// STATISTICS ROUTE
-
-Route::get('/statistics', [StatisticsController::class, 'index'])->name('admin.statistics');
-
+});
 // ForgetPassword
 Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forget.password');
 Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.password.post');
