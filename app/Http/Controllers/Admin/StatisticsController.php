@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,6 +16,7 @@ class StatisticsController extends Controller
 
         $totalUsers = User::count();
         $totalCategories = Category::count();
-        return view('admin.statistics', compact('totalUsers', 'totalCategories'));
+        $totalEvents = Event::count();
+        return view('admin.statistics', compact('totalUsers', 'totalCategories', 'totalEvents'));
     }
 }
