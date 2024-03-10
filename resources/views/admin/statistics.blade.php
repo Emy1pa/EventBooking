@@ -48,7 +48,7 @@
         <p class="py-4 text-3xl ml-5 font-bold">{{ $totalCategories }}</p>
     </div>
 
-    <!-- Third Stats Container with adjusted color for EVENTS -->
+    <!-- Third Stats Container for EVENTS -->
     <div
         class="w-72 bg-white max-w-xs rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
         <div class="h-20 bg-green-500 flex items-center justify-between">
@@ -58,6 +58,18 @@
             <p class="text-gray-500">TOTAL</p>
         </div>
         <p class="py-4 text-3xl ml-5 font-bold">{{ $totalEvents }}</p>
+    </div>
+
+    <!-- Fourth Stats Container for RESERVATIONS -->
+    <div
+        class="w-72 bg-white max-w-xs rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
+        <div class="h-20 bg-indigo-500 flex items-center justify-between"> <!-- Changed color to indigo -->
+            <p class="mr-0 text-white text-lg pl-5">RESERVATIONS</p>
+        </div>
+        <div class="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600">
+            <p class="text-gray-500">TOTAL</p>
+        </div>
+        <p class="py-4 text-3xl ml-5 font-bold">{{ $totalReservations }}</p>
     </div>
 </div>
 @endsection
