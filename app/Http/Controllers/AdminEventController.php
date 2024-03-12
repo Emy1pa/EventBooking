@@ -10,7 +10,9 @@ class AdminEventController extends Controller
     public function index()
     {
         $events = Event::where('status', 'pending')->get();
+        dump($events);
         return view('admin.eventsapprovel', compact('events'));
+
     }
 
     public function approve(Event $event)
@@ -22,6 +24,7 @@ class AdminEventController extends Controller
     public function reject(Event $event)
     {
         $event->update(['status' => 'rejected']);
-        return redirect()->route('admin.events.index')->with('success', 'Event rejected successfully');
+        $event->delete();
+        return redirect()->route('admin.events.index')->with('error', 'Event rejected successfully');
     }
 }

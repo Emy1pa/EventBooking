@@ -38,7 +38,6 @@
                     <button type="submit" class="w-full block bg-[#04BB83] hover:bg-[#00875F] focus:bg-indigo-400
                         text-white font-semibold rounded-lg px-4 py-3 mt-6">Log In</button>
 
-                    <!-- Password reset link -->
                     <p class="mt-2 text-sm text-[#04BB83] hover:text-[#00875F]">
                         <a href="{{ route('forget.password') }}">Forgot your password? Reset it here.</a>
                     </p>

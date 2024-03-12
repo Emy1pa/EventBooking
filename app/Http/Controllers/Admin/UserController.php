@@ -18,16 +18,16 @@ class UserController extends Controller
 {
     $user = User::find($userId);
 
-    // Check if the user exists and is not an admin
     if ($user && $user->role !== 'admin') {
         if ($user->is_banned) {
-            // Unban the user
             $user->is_banned = false;
-            $user->restore(); // Restore the soft-deleted user
+            $user->restore(); 
+            $user->events()->restore();
         } else {
             // Ban the user
             $user->is_banned = true;
-            $user->delete(); // Soft delete the user
+            $user->delete(); 
+            $user->events()->delete();
         }
     }
 

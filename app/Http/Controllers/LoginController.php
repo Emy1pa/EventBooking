@@ -20,7 +20,6 @@ class LoginController extends Controller
     if (auth()->attempt(['email' => $incomingFields['loginemail'], 'password' => $incomingFields['loginpassword']])) {
         $request->session()->regenerate();
 
-        // Access the authenticated user using auth() helper
         $user = auth()->user();
 
         if ($user->role === 'utilisateur') {

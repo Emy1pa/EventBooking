@@ -21,6 +21,7 @@ class Event extends Model
         'availablePlaces',
         'ReservationType' ,
         'status',
+        'user_id',
         'category_id'
     ];
     public function category()
@@ -30,5 +31,9 @@ class Event extends Model
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
+    }
+    public function events()
+    {
+        return $this->hasMany(User::class);
     }
 }

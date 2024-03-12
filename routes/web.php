@@ -44,6 +44,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // EVENTS ROUTES
 Route::middleware(['role:organisateur'])->group(function () {
 Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
+Route::post('/events/{id}', [EventController::class, 'UpdateStatus'])->name('status.update');
+
 Route::post('/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
 Route::get('/events/create', function () {
@@ -77,15 +79,18 @@ Route::post('/events/reject/{event}', [AdminEventController::class, 'reject'])->
 });
 // USER ROUTE
 Route::middleware(['role:utilisateur'])->group(function () {
-Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
 Route::post('/events/reserve/{event}', [ReservationController::class, 'reserve'])->name('events.reserve');
-Route::post('/reservations/ticket/{reservation}', [ReservationController::class, 'generateTicket'])->name('events.ticket');
+Route::post('/reservations/ticket/{id}', [ReservationController::class, 'generateTicket'])->name('events.ticket');
 Route::post('/showticket/{event}', [ReservationController::class, 'showTicket'])->name('showticket');
 
 });
+Route::get('/utilisateur/index', [UtilisateurController::class, 'index'])->name('utilisateur.index');
+
 
 // ForgetPassword
 Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forget.password');
 Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.password.post');
 Route::get('/reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
 Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');
+
+Route::get('/test', [EventController::class, 'test']);

@@ -6,6 +6,8 @@ use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
+use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
@@ -15,10 +17,30 @@ class EventController extends Controller
      */
     public function index()
     {
+
         $events = Event::where('status', 'accepted')->with('category')->paginate(10);
         $userReservations = Auth::user()->reservations;
-        
-        return view('events.index', compact('events', 'userReservations'));
+        $reservations = [];
+
+        $profileReservations = Reservation::where('event_id', Auth::user()->id)->get();
+
+        foreach ($profileReservations as $profileReservation) {
+            if ($profileReservation->status === '0') {
+                $reservations = User::where('id', $profileReservation->user_id)->get();
+            }
+        }
+
+
+
+        return view('events.index', compact('events', 'userReservations', 'reservations'));
+    }
+    public function UpdateStatus($id)
+    {
+
+        Reservation::where('user_id', $id)->update(['status' => "1"]);
+
+
+        return redirect()->route('events.index')->with('success', 'Event created successfully');
     }
 
     /**
@@ -28,7 +50,7 @@ class EventController extends Controller
     {
         $event = new Event();
         $categories = Category::all();
-        
+
         return view('events.create', compact('event', 'categories'));
     }
 
@@ -38,7 +60,9 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
 
+
         $incomingFields = $request->validated();
+
         $file_extension = $request->image->getClientOriginalExtension();
         $file_name = time() . '.' . $file_extension;
         $path = public_path('images/events');
@@ -48,7 +72,7 @@ class EventController extends Controller
         $incomingFields['status'] = 'pending';
 
 
-        $event = Event::create($incomingFields);
+        Event::create($incomingFields);
 
         return redirect()->route('events.index')->with('success', 'Event created successfully');
     }
@@ -68,7 +92,6 @@ class EventController extends Controller
     {
         $categories = Category::all();
         return view('events.edit', compact('event', 'categories'));
-        
     }
 
     /**
@@ -82,32 +105,31 @@ class EventController extends Controller
 
     // }
     public function update(EventRequest $request, Event $event)
-{
-    $formFields = $request->validated();
+    {
+        $formFields = $request->validated();
 
-    if ($request->hasFile('image')) {
-        // Supprimer l'ancienne image si elle existe
-        if ($event->image) {
-            $imagePath = public_path($event->image);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
+        if ($request->hasFile('image')) {
+            if ($event->image) {
+                $imagePath = public_path($event->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
+
+            // Télécharger et stocker la nouvelle image
+            $file_extension = $request->file('image')->getClientOriginalExtension();
+            $file_name = time() . '.' . $file_extension;
+            $path = public_path('images/events');
+            $request->file('image')->move($path, $file_name);
+
+            // Mettre à jour le chemin de l'image dans la base de données
+            $formFields['image'] = 'images/events/' . $file_name;
         }
 
-        // Télécharger et stocker la nouvelle image
-        $file_extension = $request->file('image')->getClientOriginalExtension();
-        $file_name = time() . '.' . $file_extension;
-        $path = public_path('images/events');
-        $request->file('image')->move($path, $file_name);
+        $event->fill($formFields)->save();
 
-        // Mettre à jour le chemin de l'image dans la base de données
-        $formFields['image'] = 'images/events/' . $file_name;
+        return redirect()->route('events.index')->with('success', 'Event updated successfully');
     }
-
-    $event->fill($formFields)->save();
-
-    return redirect()->route('events.index')->with('success', 'Event updated successfully');
-}
 
 
     /**
@@ -117,6 +139,13 @@ class EventController extends Controller
     {
         $event->delete();
         return redirect()->route('events.index')->with('success', 'Event deleted successfully');
+    }
 
+    public function test(){
+        $events = Event::all()->with('reservations')->get();
+        foreach($events as $event){
+            e
+        }
+        dump($event);
     }
 }

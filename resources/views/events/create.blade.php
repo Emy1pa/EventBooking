@@ -18,6 +18,7 @@
         <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data"
             class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
             @csrf
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
             @if ($errors->any())
                 <div class="bg-red-500 text-white p-4 mb-4 rounded-md">
@@ -76,6 +77,15 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-4">
+                <label for="ReservationType" class="block text-1xl font-semibold text-gray-800">Reservation Type:</label>
+                <select id="ReservationType" name="ReservationType"
+                    class="mt-2 p-4 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-400">
+                    <option  value="automatically" {{ old('ReservationType') === 'automatically' ? 'selected' : '' }}>Automatic
+                    </option>
+                    <option  value="manually" {{ old('ReservationType') === 'manually' ? 'selected' : '' }}>Manual</option>
+                </select>
+            </div>
 
             <button type="submit"
                 class="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300">
@@ -85,7 +95,7 @@
                 class="mt-2 w-full p-2 bg-gray-500 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:border-blue-300">
                 <a href="{{ url()->previous() }}">Go Back</a>
             </button>
-            
+
 
         </form>
     </div>

@@ -52,10 +52,15 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     public function isAdmin()
     {
-        return $this->role === 'admin'; // Assuming 'admin' is the role for administrators
+        return $this->role === 'admin'; 
     }
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+   
 }

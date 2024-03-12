@@ -2,16 +2,16 @@
 
 @section('content')
 <header class="p-4 bg-gray-800 text-white">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <!-- Logo or site name can go here -->
-        <a href="{{ route('categories.index') }}" class="text-lg font-bold">EventBooking</a>
+        <a href="{{ route('categories.index') }}" class="text-lg font-bold mb-4 md:mb-0">EventBooking</a>
 
-        <!-- Navigation Links -->
-        <nav class="flex space-x-4 items-center">
-            <a href="{{ route('categories.index') }}" class="text-blue-300 hover:text-blue-400">Categories</a>
-            <a href="{{ route('admin.statistics') }}">Statistics</a>
-            <a href="{{ route('users.index') }}">Users</a>
-            <a href="{{ route('admin.events.index') }}">Events Approval</a> <!-- Add this line -->
+        
+        <nav class="flex flex-col md:flex-row md:space-x-4 items-center">
+            <a href="{{ route('categories.index') }}" class="text-blue-300 hover:text-blue-400 mb-2 md:mb-0">Categories</a>
+            <a href="{{ route('admin.statistics') }}" class="mb-2 md:mb-0">Statistics</a>
+            <a href="{{ route('users.index') }}" class="mb-2 md:mb-0">Users</a>
+            <a href="{{ route('admin.events.index') }}" class="mb-2 md:mb-0">Events Approval</a>
             <form action="/logout" method="post">
                 @csrf
                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-medium rounded-lg text-sm px-5 py-2.5">
@@ -22,11 +22,11 @@
     </div>
 </header>
 
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-4 md:p-8">
     <div class="flex justify-end mb-4">
         <a href="{{ route('categories.create') }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Category</a>
     </div>
-    <h1 class="text-4xl font-bold mb-8">Categories</h1>
+    <h1 class="text-2xl md:text-4xl font-bold mb-4">Categories</h1>
 
     <div class="overflow-x-auto">
         @if (session('success'))

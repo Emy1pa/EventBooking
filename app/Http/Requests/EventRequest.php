@@ -27,9 +27,11 @@ class EventRequest extends FormRequest
             'description' => 'required|string',
             'location' => 'required|string',
             'availablePlaces' => 'required',
-            'date' => 'required|date',
+            'date' => 'required|date|after_or_equal:' . now()->toDateString(),
             'category_id' => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'user_id' => 'required',
+            'ReservationType' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ];
     }
 }
